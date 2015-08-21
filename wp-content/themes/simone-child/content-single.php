@@ -44,6 +44,10 @@
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
+		<?php
+			$user = get_field('contributor');
+			var_dump($user);
+		?>
 		<?php the_content(); ?>
         <?php if ( get_field('info_box_title') ) {
 					echo ' <div class="info-box">';
