@@ -20,7 +20,7 @@ function simone_posted_on() {
 		$the_contributor = get_field('contributor');	
 		$contributor = sprintf( ' and <span class="author vcard"><a class="url fn n" href="%1$s">%2$s</a></span>',
 			esc_url( get_author_posts_url( $the_contributor[ID] ) ),
-			esc_html( get_the_author() )
+			esc_html( $the_contributor[display_name] )
 		);
 	}
         // Translators: Text wrapped in mobile-hide class is hidden on wider screens.
