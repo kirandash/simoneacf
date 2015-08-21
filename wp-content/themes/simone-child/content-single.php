@@ -45,7 +45,13 @@
 
 	<div class="entry-content">
 		<?php the_content(); ?>
-        <?php the_field('info_box_title'); ?>
+        <?php if ( get_field('info_box_title') ) {
+					echo ' <div class="info-box">';
+					echo '<h1>' . get_field('info_box_title') . '</h1>';
+					the_field('info_box_content');
+					echo '</div>';
+		}
+		 ?>
 		<?php
 			wp_link_pages( array(
 				'before' => '<div class="page-links">' . __( 'Pages:', 'simone' ),
