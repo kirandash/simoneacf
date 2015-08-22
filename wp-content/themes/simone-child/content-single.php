@@ -46,33 +46,38 @@
 	<div class="entry-content">
     
 		<?php the_content(); ?>
-        <?php if ( get_field('info_box_title') ) {
-					echo ' <div class="info-box">';
-					echo '<h1>' . get_field('info_box_title') . '</h1>';
-					the_field('info_box_content');
-					echo '</div>';
-		}
-		 ?>
-         
-         <?php
-		 	//Displaying related posts function
-			
-			$posts = get_field('related_posts');
-			
-			if( $posts ) {
-				
-				echo '<h1>Further Reading: </h1>';	
-				echo '<ul class="related-list">';
-				foreach( $posts as $post ) :
-					setup_postdata($post);
-					echo '<li><a href="' . get_the_permalink() . '">';
-					echo '<h3>' . get_the_title() . '</h3>';
-					the_excerpt();
-					echo '</a></li>';	
-				endforeach;
-				echo '</ul>';
-				wp_reset_postdata();
+        <?php 
+		
+		if( function_exists('get_field')) {
+			if ( get_field('info_box_title') ) {
+						echo ' <div class="info-box">';
+						echo '<h1>' . get_field('info_box_title') . '</h1>';
+						the_field('info_box_content');
+						echo '</div>';
 			}
+			 ?>
+			 
+			 <?php
+				//Displaying related posts function
+				
+				$posts = get_field('related_posts');
+				
+				if( $posts ) {
+					
+					echo '<h1>Further Reading: </h1>';	
+					echo '<ul class="related-list">';
+					foreach( $posts as $post ) :
+						setup_postdata($post);
+						echo '<li><a href="' . get_the_permalink() . '">';
+						echo '<h3>' . get_the_title() . '</h3>';
+						the_excerpt();
+						echo '</a></li>';	
+					endforeach;
+					echo '</ul>';
+					wp_reset_postdata();
+				}
+			
+		}//conditional check for plugin activated or not.
 		 ?>
          
 		<?php

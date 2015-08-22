@@ -16,12 +16,14 @@ function simone_posted_on() {
 		esc_html( get_the_modified_date( _x('F jS, Y', 'Public modified on date', 'simone') ) )
 	);
 	
-	if( get_field('contributor')){
-		$the_contributor = get_field('contributor');	
-		$contributor = sprintf( ' and <span class="author vcard"><a class="url fn n" href="%1$s">%2$s</a></span>',
-			esc_url( get_author_posts_url( $the_contributor[ID] ) ),
-			esc_html( $the_contributor[display_name] )
-		);
+	if ( function_exists('get_field') ){
+		if( get_field('contributor')){
+			$the_contributor = get_field('contributor');	
+			$contributor = sprintf( ' and <span class="author vcard"><a class="url fn n" href="%1$s">%2$s</a></span>',
+				esc_url( get_author_posts_url( $the_contributor[ID] ) ),
+				esc_html( $the_contributor[display_name] )
+			);
+		}
 	}
         // Translators: Text wrapped in mobile-hide class is hidden on wider screens.
 	printf( _x( '<span class="byline">Written by %1$s' . $contributor . '</span><span class="mobile-hide"> on </span><span class="posted-on">%2$s</span><span class="mobile-hide">.</span>', 'mobile-hide class is used to hide connecting elements like "on" and "." on wider screens.', 'simone' ),
